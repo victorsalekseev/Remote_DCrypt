@@ -18,58 +18,87 @@ namespace Remote_DCrypt
 
         public static bool CheckKeyFNameLen(string key)
         {
-            if (key.Length < 255)
-            {
-                System.Windows.Forms.MessageBox.Show("Длина ключа для шифрования имен файлов не может быть меньше 255 символов." + Environment.NewLine + "Сейчас длина ключа: " + key.Length.ToString() + ", что меньше 255.");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return true;
         }
 
         public static bool isKeyFNameLen(string f_name)
         {
-            if (f_name.Length > SshSettings.key_fname.Length)
-            {
-                System.Windows.Forms.MessageBox.Show("Такой файл не будет отправлен на сервер,\n\rпоскольку длина его имени превышает длину ключа (" + SshSettings.key_fname.Length + " символов)");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return true;
         }
 
-        public string EncryptFName(string d_str)
+        public string EncryptFName(string d_str,string key_str)
         {
-            string key_str = SshSettings.key_fname;
             if (string.IsNullOrEmpty(key_str)) { key_str = default_key; }
             string e_str = string.Empty;
-            d_str = Encoding.GetEncoding(1251).GetString(Encoding.Convert(Encoding.UTF8, Encoding.GetEncoding(1251), Encoding.UTF8.GetBytes(d_str)));
-            key_str = Encoding.GetEncoding(1251).GetString(Encoding.Convert(Encoding.UTF8, Encoding.GetEncoding(1251), Encoding.UTF8.GetBytes(key_str)));
-            for (int i = 0; i < d_str.Length; i++)
+            try
             {
-                e_str += "." + string.Format("{0}", (int)Convert.ToChar(d_str[i]) + (int)Convert.ToChar(key_str[i]));
+                PasswordDeriveBytes pdb = new PasswordDeriveBytes(key_str, null); //класс, позволяющий генерировать ключи на базе паролей
+                pdb.HashName = "SHA512"; //будем использовать SHA512
+
+                SymmetricAlgorithm alg = new TripleDESCryptoServiceProvider();
+                byte[] iv = new Byte[alg.BlockSize >> 3];
+                byte[] key = pdb.GetBytes(alg.KeySize >> 3);
+                // Шифрование
+                ICryptoTransform transform = alg.CreateEncryptor(key, iv);
+                byte[] passwordByte = Encoding.GetEncoding(1251).GetBytes(d_str);
+                byte[] encryptedPassword = transform.TransformFinalBlock(passwordByte, 0, passwordByte.Length);
+
+                foreach (byte enc in encryptedPassword)
+                {
+                    string dd = enc.ToString("X2");
+                    e_str += dd;// "." + enc.ToString();
+                }
+                e_str = "0." + e_str;
             }
-            return "0" + e_str;
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка: " + ex.Message);
+                e_str = string.Empty;
+            }
+            return e_str;
         }
 
-        public string DecryptFName(string e_str)
+        public string DecryptFName(string e_str, string key_str)
         {
-            string key_str = SshSettings.key_fname;
             if (string.IsNullOrEmpty(key_str)) { key_str = default_key; }
             string d_str = string.Empty;
-            key_str = Encoding.GetEncoding(1251).GetString(Encoding.Convert(Encoding.UTF8, Encoding.GetEncoding(1251), Encoding.UTF8.GetBytes(key_str)));
-            string[] arr_e_str = Regex.Split(e_str, "\\.");
-            int rr;
-            if (arr_e_str[0]=="0" && Int32.TryParse(arr_e_str[1], out rr))
+            try
             {
-                for (int i = 1; i < arr_e_str.Length; i++)
+                string[] arr_e_str = Regex.Split(e_str, "\\.");
+                if (arr_e_str.Length > 1)
                 {
-                    d_str += Convert.ToChar(int.Parse(arr_e_str[i]) - (int)Convert.ToChar(key_str[i - 1]));
+                    int rr;
+                    if (arr_e_str[0] == "0" && Int32.TryParse(string.Format("{0}", arr_e_str[1].Length / 2), out rr))
+                    {
+                        d_str = "Имя файла не расшифровано ";
+                        int count_bytes = (int)arr_e_str[1].Length / 2;
+                        byte[] passwordByte = new byte[count_bytes];
+                        for (int i = 0; i < count_bytes; i++)
+                        {
+                            passwordByte[i] = Convert.ToByte(int.Parse(arr_e_str[1].Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber));
+                        }
+
+                        SymmetricAlgorithm alg = new TripleDESCryptoServiceProvider();
+
+                        PasswordDeriveBytes pdb = new PasswordDeriveBytes(key_str, null); //класс, позволяющий генерировать ключи на базе паролей
+                        pdb.HashName = "SHA512"; //будем использовать SHA512
+                        byte[] iv = new Byte[alg.BlockSize >> 3];
+                        byte[] key = pdb.GetBytes(alg.KeySize >> 3);
+                        // ДеШифрование
+                        ICryptoTransform transform = alg.CreateDecryptor(key, iv);
+
+                        byte[] decryptedPassword = transform.TransformFinalBlock(passwordByte, 0, passwordByte.Length);
+                        d_str = Encoding.GetEncoding(1251).GetString(decryptedPassword);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка: " + ex.Message);
+                DateTime dt;
+                dt = DateTime.Now;
+                string time = dt.Hour.ToString() + "-" + dt.Minute.ToString() + "-" + dt.Second.ToString() + " (" + dt.Millisecond.ToString() + ")";
+                d_str += time;
             }
             return d_str;
         }

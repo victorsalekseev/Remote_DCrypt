@@ -33,7 +33,7 @@ namespace Remote_DCrypt.Action
             _IsUpload = IsUpload;
             if (_IsUpload)
             {
-                _enc_file_name = cr.EncryptFName(file_name);
+                _enc_file_name = cr.EncryptFName(file_name, SshSettings.key_fname);
             }
             else
             {

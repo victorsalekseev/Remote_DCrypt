@@ -27,21 +27,25 @@ namespace Remote_DCrypt.Settings
         //Лишаем возможности создавать объекты этого класса
         private SaveSetting()
         {
+
         }
 
-        static byte[] key = new byte[] { 12, 45, 12, 45, 78, 200, 77, 18, 82, 55, 44, 47, 67, 15, 40, 100, 150, 141, 111, 174, 178, 177, 158, 77, 157, 122, 125, 141, 115, 125, 185, 195 };
-        static byte[] alg = new byte[] { 11, 15, 51, 74, 114, 188, 195, 154, 111, 152, 141, 121, 241, 222, 212, 147 };
-        public static string path_to_set_file = AppDomain.CurrentDomain.BaseDirectory + @"\keys.key";
+        public static string path_to_set_file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "keys.key");
 
         public static void CreateSettings(object o)
         {
+
             XmlSerializer myXmlSer = new XmlSerializer(o.GetType());
             using (FileStream fStream = File.Open(path_to_set_file, FileMode.OpenOrCreate))
             {
                 Rijndael rijndaelAlg = Rijndael.Create();
+                PasswordDeriveBytes pdb = new PasswordDeriveBytes("пароль", null); //класс, позволяющий генерировать ключи на базе паролей
+                pdb.HashName = "SHA512"; //будем использовать SHA512
+                byte[] iv = new Byte[rijndaelAlg.BlockSize >> 3];
+                byte[] key = pdb.GetBytes(rijndaelAlg.KeySize >> 3);
 
                 using (CryptoStream cStream = new CryptoStream(fStream,
-                  rijndaelAlg.CreateEncryptor(key, alg),
+                  rijndaelAlg.CreateEncryptor(key, iv),
                   CryptoStreamMode.Write))
                 using (StreamWriter sWriter = new StreamWriter(cStream))
                 {
@@ -61,9 +65,13 @@ namespace Remote_DCrypt.Settings
             using (FileStream fStream = File.Open(path_to_set_file, FileMode.Open))
             {
                 Rijndael rijndaelAlg = Rijndael.Create();
+                PasswordDeriveBytes pdb = new PasswordDeriveBytes("пароль", null); //класс, позволяющий генерировать ключи на базе паролей
+                pdb.HashName = "SHA512"; //будем использовать SHA512
+                byte[] iv = new Byte[rijndaelAlg.BlockSize >> 3];
+                byte[] key = pdb.GetBytes(rijndaelAlg.KeySize >> 3);
 
                 using (CryptoStream cStream = new CryptoStream(fStream,
-                  rijndaelAlg.CreateDecryptor(key, alg),
+                  rijndaelAlg.CreateDecryptor(key, iv),
                   CryptoStreamMode.Read))
                 using (StreamReader sReader = new StreamReader(cStream))
                 {

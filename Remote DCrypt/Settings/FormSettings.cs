@@ -138,7 +138,7 @@ namespace Remote_DCrypt.Settings
 
         private void textBox_fnamekey_TextChanged(object sender, EventArgs e)
         {
-            textBox_count.Text = textBox_fnamekey.Text.Length.ToString() + "/" + textBox_fnamekey.MaxLength.ToString();
+            textBox_count.Text = textBox_fnamekey.Text.Length.ToString();
         }
 
         private void FormSettings_FormClosing(object sender, FormClosingEventArgs e)
@@ -154,6 +154,15 @@ namespace Remote_DCrypt.Settings
         private void label_msg_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox_key_size_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int key_err = 256;
+            if (int.TryParse(comboBox_key_size.Text, out key_err))
+            {
+                comboBox_key_size.SelectedText = key_err.ToString();
+            }
         }
 
     }

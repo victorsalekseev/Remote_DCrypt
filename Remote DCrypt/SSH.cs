@@ -102,7 +102,7 @@ namespace Remote_DCrypt
                 SshSettings.key_fname = o.key_fname;
                 SshSettings.key_size = o.key_size;
                 SshSettings.pwd_file_enc = o.pwd_file_enc;
-                SshSettings.local_path = string.Empty;//AppDomain.CurrentDomain.BaseDirectory; 
+                //SshSettings.local_path = string.Empty;//AppDomain.CurrentDomain.BaseDirectory; 
                 SshSettings.server = o.server;
                 SshSettings.user = o.user;
                 yes = true;

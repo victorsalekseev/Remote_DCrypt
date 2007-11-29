@@ -162,7 +162,7 @@ namespace Remote_DCrypt
                     lv.Items.Clear();
                     foreach (string var in srr)
                     {
-                        string dec_name = new Crypt().DecryptFName(var);
+                        string dec_name = new Crypt().DecryptFName(var, SshSettings.key_fname);
                         if (!string.IsNullOrEmpty(dec_name))
                         {
                             ListViewItem li = new ListViewItem();
@@ -383,7 +383,14 @@ namespace Remote_DCrypt
         {
             if (isSelectedLV(listView_Local))
             {
-               System.Diagnostics.Process.Start(listView_Local.SelectedItems[0].Tag.ToString());
+                try
+                {
+                    System.Diagnostics.Process.Start(listView_Local.SelectedItems[0].Tag.ToString());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка запуска: " + ex.Message);
+                }
             }
         }
 
