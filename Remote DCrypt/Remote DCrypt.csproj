@@ -54,6 +54,12 @@
     <Compile Include="Action\FormConnecting.Designer.cs">
       <DependentUpon>FormConnecting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Action\FormKeyboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Action\FormKeyboard.Designer.cs">
+      <DependentUpon>FormKeyboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Action\FormPwd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,10 @@
     <EmbeddedResource Include="Action\FormConnecting.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FormConnecting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Action\FormKeyboard.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FormKeyboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Action\FormPwd.resx">
       <SubType>Designer</SubType>

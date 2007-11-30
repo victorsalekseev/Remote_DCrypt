@@ -31,8 +31,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button_ok = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label_crypt = new System.Windows.Forms.Label();
-            this.progressBar_crypt = new System.Windows.Forms.ProgressBar();
             this.listBox_log = new System.Windows.Forms.ListBox();
             this.label_status = new System.Windows.Forms.Label();
             this.progressBar_status = new System.Windows.Forms.ProgressBar();
@@ -48,16 +46,17 @@
             // 
             this.panel1.Controls.Add(this.button_ok);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 236);
+            this.panel1.Location = new System.Drawing.Point(0, 160);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(564, 34);
+            this.panel1.Size = new System.Drawing.Size(345, 34);
             this.panel1.TabIndex = 2;
             // 
             // button_ok
             // 
+            this.button_ok.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_ok.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button_ok.Enabled = false;
-            this.button_ok.Location = new System.Drawing.Point(477, 3);
+            this.button_ok.Location = new System.Drawing.Point(258, 3);
             this.button_ok.Name = "button_ok";
             this.button_ok.Size = new System.Drawing.Size(75, 23);
             this.button_ok.TabIndex = 0;
@@ -67,8 +66,6 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label_crypt);
-            this.panel2.Controls.Add(this.progressBar_crypt);
             this.panel2.Controls.Add(this.listBox_log);
             this.panel2.Controls.Add(this.label_status);
             this.panel2.Controls.Add(this.progressBar_status);
@@ -79,37 +76,24 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(564, 236);
+            this.panel2.Size = new System.Drawing.Size(345, 160);
             this.panel2.TabIndex = 3;
-            // 
-            // label_crypt
-            // 
-            this.label_crypt.AutoSize = true;
-            this.label_crypt.Location = new System.Drawing.Point(12, 70);
-            this.label_crypt.Name = "label_crypt";
-            this.label_crypt.Size = new System.Drawing.Size(36, 13);
-            this.label_crypt.TabIndex = 8;
-            this.label_crypt.Text = "Шифр";
-            // 
-            // progressBar_crypt
-            // 
-            this.progressBar_crypt.Location = new System.Drawing.Point(73, 64);
-            this.progressBar_crypt.Name = "progressBar_crypt";
-            this.progressBar_crypt.Size = new System.Drawing.Size(479, 23);
-            this.progressBar_crypt.TabIndex = 7;
             // 
             // listBox_log
             // 
+            this.listBox_log.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox_log.FormattingEnabled = true;
-            this.listBox_log.Location = new System.Drawing.Point(12, 122);
+            this.listBox_log.Location = new System.Drawing.Point(12, 92);
             this.listBox_log.Name = "listBox_log";
-            this.listBox_log.Size = new System.Drawing.Size(540, 108);
+            this.listBox_log.Size = new System.Drawing.Size(321, 56);
             this.listBox_log.TabIndex = 6;
             // 
             // label_status
             // 
             this.label_status.AutoSize = true;
-            this.label_status.Location = new System.Drawing.Point(12, 98);
+            this.label_status.Location = new System.Drawing.Point(12, 68);
             this.label_status.Name = "label_status";
             this.label_status.Size = new System.Drawing.Size(54, 13);
             this.label_status.TabIndex = 5;
@@ -117,17 +101,21 @@
             // 
             // progressBar_status
             // 
-            this.progressBar_status.Location = new System.Drawing.Point(73, 93);
+            this.progressBar_status.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar_status.Location = new System.Drawing.Point(73, 63);
             this.progressBar_status.Name = "progressBar_status";
-            this.progressBar_status.Size = new System.Drawing.Size(479, 23);
+            this.progressBar_status.Size = new System.Drawing.Size(260, 23);
             this.progressBar_status.TabIndex = 4;
             // 
             // textBox_dst_file
             // 
+            this.textBox_dst_file.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_dst_file.Enabled = false;
             this.textBox_dst_file.Location = new System.Drawing.Point(73, 38);
             this.textBox_dst_file.Name = "textBox_dst_file";
-            this.textBox_dst_file.Size = new System.Drawing.Size(479, 20);
+            this.textBox_dst_file.Size = new System.Drawing.Size(260, 20);
             this.textBox_dst_file.TabIndex = 3;
             // 
             // label_dst_file
@@ -141,10 +129,12 @@
             // 
             // textBox_src_file
             // 
+            this.textBox_src_file.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_src_file.Enabled = false;
             this.textBox_src_file.Location = new System.Drawing.Point(73, 12);
             this.textBox_src_file.Name = "textBox_src_file";
-            this.textBox_src_file.Size = new System.Drawing.Size(479, 20);
+            this.textBox_src_file.Size = new System.Drawing.Size(260, 20);
             this.textBox_src_file.TabIndex = 1;
             // 
             // label_src_file
@@ -160,7 +150,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(564, 270);
+            this.ClientSize = new System.Drawing.Size(345, 194);
+            this.ControlBox = false;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
@@ -193,7 +184,5 @@
         private System.Windows.Forms.ListBox listBox_log;
         private System.Windows.Forms.Label label_status;
         private System.Windows.Forms.ProgressBar progressBar_status;
-        private System.Windows.Forms.Label label_crypt;
-        private System.Windows.Forms.ProgressBar progressBar_crypt;
     }
 }

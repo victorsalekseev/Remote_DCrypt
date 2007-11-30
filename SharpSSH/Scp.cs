@@ -464,7 +464,7 @@ namespace Tamir.SharpSsh
 				SendEndMessage(src, dst,copied,filesize, "Transfer ended with an error.");
 				throw new SshTransferException("Unknow error during file transfer.");				
 			}
-			SendEndMessage(src, dst, copied, filesize, "Transfer completed successfuly ("+copied+" bytes).");
+			SendEndMessage(src, dst, copied, filesize, "Transfer completed successfuly.");
 		}
 
 		/// <summary>

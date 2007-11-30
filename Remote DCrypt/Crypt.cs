@@ -8,8 +8,46 @@ using System.Windows.Forms;
 
 namespace Remote_DCrypt
 {
+    public struct PackEnCryptParam
+    {
+        public string pwd_file_enc;
+        public int key_size;
+        public string src_dec_file;
+        public string dst_enc_file;
+        public ProgressBar pr_b;
+    }
+
+    public struct PackDeCryptParam
+    {
+        public string pwd_file_enc;
+        public int key_size;
+        public string src_enc_file;
+        public string dst_dec_file;
+        public ProgressBar pr_b;
+    }
+
     public class Crypt
     {
+        public delegate void OnEncryptingFile(long curr_byte, long count_byte);
+        public event OnEncryptingFile EncryptingFile;
+
+        public delegate void OnEncryptedFile(string dst_enc_file);
+        public event OnEncryptedFile EncryptedFile;
+
+        private delegate void SetEncValCallback(long val, long cnt, int percent);
+        private delegate void SetEncryptedFile(string dst_enc_file);
+
+
+        public delegate void OnDecryptingFile(long curr_byte, long count_byte);
+        public event OnDecryptingFile DecryptingFile;
+
+        public delegate void OnDecryptedFile(string dst_enc_file);
+        public event OnDecryptedFile DecryptedFile;
+
+        private delegate void SetDecValCallback(long val, long cnt, int percent);
+        private delegate void SetDecryptedFile(string dst_enc_file);
+
+
         public static string default_key = "ZXCVBNMfghfghfggh67890$%^+_)(*&?><-GERTYUIOP123%^+_)"+
                                             "(*&?>YUIfghsda67890$%^+_)(*&?><-GER&?><-GERTYUIOP123%^+_)"+
                                             "(*af&?>YUIOP1RgfgjghkWsdfdfYUIOP12jjfghddfsfds67890$%^+_)"+
@@ -103,8 +141,16 @@ namespace Remote_DCrypt
             return d_str;
         }
 
-        public void encryt_file(string pwd_file_enc, int key_size, string src_dec_file, string dst_enc_file, ProgressBar pr_b)
+
+        public void encryt_file(object pcp /*string pwd_file_enc, int key_size, string src_dec_file, string dst_enc_file, ProgressBar pr_b*/)
         {
+            PackEnCryptParam _vpcp = (PackEnCryptParam)pcp;
+            string pwd_file_enc = _vpcp.pwd_file_enc;
+            int key_size = _vpcp.key_size;
+            string src_dec_file = _vpcp.src_dec_file;
+            string dst_enc_file = _vpcp.dst_enc_file;
+            ProgressBar pr_b = _vpcp.pr_b;
+
             if (string.IsNullOrEmpty(pwd_file_enc)) { pwd_file_enc = Crypt.default_key; }
             SymmetricAlgorithm alg;
             alg = (SymmetricAlgorithm)RijndaelManaged.Create(); //пример создания класса RijndaelManaged
@@ -125,24 +171,44 @@ namespace Remote_DCrypt
             byte[] outbuf = new byte[buflen];
             int len;
             long input_size = instream.Length;
-            pr_b.Maximum = (int)input_size;
+            long cur_byte = 0;
             while ((len = instream.Read(inbuf, 0, buflen)) == buflen)
             {
                 int enclen = tr.TransformBlock(inbuf, 0, buflen, outbuf, 0); //собственно шифруем
                 outstream.Write(outbuf, 0, enclen);
-                pr_b.Value += enclen;
-                Application.DoEvents();
+                cur_byte += enclen;
+                NewMethod(pr_b, input_size, cur_byte);
+                EncryptingFile(cur_byte, input_size);
             }
             instream.Close();
             outbuf = tr.TransformFinalBlock(inbuf, 0, len); //шифруем финальный блок
             outstream.Write(outbuf, 0, outbuf.Length);
-            pr_b.Value = (int)input_size;
+            NewMethod(pr_b, input_size, input_size);
             outstream.Close();
             alg.Clear(); //осуществляем зачистку
+
+            SetEncryptedFile d = new SetEncryptedFile(Action.FormAction.SendingFile);
+            pr_b.Invoke(d, new object[] { dst_enc_file });
+            EncryptedFile(dst_enc_file);
         }
 
-        public void decrypt_file(string pwd_file_enc, int key_size, string src_enc_file, string dst_dec_file, ProgressBar pr_b)
+        private static void NewMethod(ProgressBar pr_b, long input_size, long cur_byte)
         {
+            int percent = (int)Math.Floor((double)cur_byte * 100 / input_size);
+            SetEncValCallback d = new SetEncValCallback(Action.FormAction.SetTextEncrypting);
+            pr_b.Invoke(d, new object[] { cur_byte, input_size, percent });
+        }
+
+
+        public void decrypt_file(object pcp /*string pwd_file_enc, int key_size, string src_enc_file, string dst_dec_file, ProgressBar pr_b*/)
+        {
+            PackDeCryptParam _vpcp = (PackDeCryptParam)pcp;
+            string pwd_file_enc = _vpcp.pwd_file_enc;
+            int key_size = _vpcp.key_size;
+            string src_enc_file = _vpcp.src_enc_file;
+            string dst_dec_file = _vpcp.dst_dec_file;
+            ProgressBar pr_b = _vpcp.pr_b;
+
             if (string.IsNullOrEmpty(pwd_file_enc)) { pwd_file_enc = Crypt.default_key; }
             SymmetricAlgorithm alg;
             alg = (SymmetricAlgorithm)RijndaelManaged.Create(); //пример создания класса RijndaelManaged
@@ -163,13 +229,14 @@ namespace Remote_DCrypt
             byte[] outbuf = new byte[buflen];
             int len;
             long input_size = instream.Length;
-            pr_b.Maximum = (int)input_size;
+            long cur_byte = 0;
             while ((len = instream.Read(inbuf, 0, buflen)) == buflen)
             {
                 int enclen = tr.TransformBlock(inbuf, 0, buflen, outbuf, 0); //собственно расшифровываем
                 outstream.Write(outbuf, 0, enclen);
-                pr_b.Value += enclen;
-                Application.DoEvents();
+                cur_byte += enclen;
+                NewMethod2(pr_b, input_size, cur_byte);
+                EncryptingFile(cur_byte, input_size);
             }
             instream.Close();
             outbuf = tr.TransformFinalBlock(inbuf, 0, len); //расшифровываем финальный блок
@@ -177,6 +244,17 @@ namespace Remote_DCrypt
             pr_b.Value = (int)input_size;
             outstream.Close();
             alg.Clear(); //осуществляем зачистку
+
+            SetDecryptedFile d = new SetDecryptedFile(Action.FormAction.RecievedFile);
+            pr_b.Invoke(d, new object[] { src_enc_file });
+            DecryptedFile(src_enc_file);
+        }
+
+        private static void NewMethod2(ProgressBar pr_b, long input_size, long cur_byte)
+        {
+            int percent = (int)Math.Floor((double)cur_byte * 100 / input_size);
+            SetDecValCallback d = new SetDecValCallback(Action.FormAction.SetTextDecrypting);
+            pr_b.Invoke(d, new object[] { cur_byte, input_size, percent });
         }
     }
 }

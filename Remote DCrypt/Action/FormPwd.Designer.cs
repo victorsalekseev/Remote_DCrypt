@@ -33,6 +33,7 @@
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.label = new System.Windows.Forms.Label();
             this.textBox = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +62,7 @@
             // 
             // groupBox
             // 
+            this.groupBox.Controls.Add(this.button1);
             this.groupBox.Controls.Add(this.label);
             this.groupBox.Controls.Add(this.textBox);
             this.groupBox.Location = new System.Drawing.Point(12, 12);
@@ -84,9 +86,19 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox.Location = new System.Drawing.Point(57, 19);
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(260, 20);
+            this.textBox.Size = new System.Drawing.Size(215, 20);
             this.textBox.TabIndex = 0;
             this.textBox.Text = "c6a893ec";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(278, 17);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(38, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FormPwd
             // 
@@ -120,5 +132,6 @@
         private System.Windows.Forms.GroupBox groupBox;
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.TextBox textBox;
+        private System.Windows.Forms.Button button1;
     }
 }

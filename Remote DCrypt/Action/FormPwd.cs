@@ -25,5 +25,11 @@ namespace Remote_DCrypt.Action
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormKeyboard c = new FormKeyboard();
+            c.ShowDialog();
+        }
     }
 }
