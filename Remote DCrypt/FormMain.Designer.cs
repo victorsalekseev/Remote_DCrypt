@@ -65,6 +65,8 @@
             this.textBoxPath = new System.Windows.Forms.TextBox();
             this.button_from_remote = new System.Windows.Forms.Button();
             this.button_to_remote = new System.Windows.Forms.Button();
+            this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сайтПрограммыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.panel_main.SuspendLayout();
             this.panel_remote.SuspendLayout();
@@ -77,7 +79,8 @@
             // 
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.действияToolStripMenuItem,
-            this.настройкиToolStripMenuItem});
+            this.настройкиToolStripMenuItem,
+            this.оПрограммеToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(654, 24);
@@ -98,28 +101,28 @@
             // соединитьсяToolStripMenuItem
             // 
             this.соединитьсяToolStripMenuItem.Name = "соединитьсяToolStripMenuItem";
-            this.соединитьсяToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.соединитьсяToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.соединитьсяToolStripMenuItem.Text = "Список файлов на сервере";
             this.соединитьсяToolStripMenuItem.Click += new System.EventHandler(this.соединитьсяToolStripMenuItem_Click);
             // 
             // команднаяСтрокаСервераToolStripMenuItem
             // 
             this.команднаяСтрокаСервераToolStripMenuItem.Name = "команднаяСтрокаСервераToolStripMenuItem";
-            this.команднаяСтрокаСервераToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.команднаяСтрокаСервераToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.команднаяСтрокаСервераToolStripMenuItem.Text = "Командная строка сервера";
             this.команднаяСтрокаСервераToolStripMenuItem.Click += new System.EventHandler(this.команднаяСтрокаСервераToolStripMenuItem_Click);
             // 
             // стеретьПарольИзПамятиToolStripMenuItem
             // 
             this.стеретьПарольИзПамятиToolStripMenuItem.Name = "стеретьПарольИзПамятиToolStripMenuItem";
-            this.стеретьПарольИзПамятиToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.стеретьПарольИзПамятиToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.стеретьПарольИзПамятиToolStripMenuItem.Text = "Стереть пароль из памяти";
             this.стеретьПарольИзПамятиToolStripMenuItem.Click += new System.EventHandler(this.стеретьПарольИзПамятиToolStripMenuItem_Click);
             // 
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.выходToolStripMenuItem.Text = "Выход";
             this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
@@ -206,21 +209,21 @@
             this.скачатьToolStripMenuItem,
             this.удалитьToolStripMenuItem_rem});
             this.contextMenuStrip_remote.Name = "contextMenuStrip_remote";
-            this.contextMenuStrip_remote.Size = new System.Drawing.Size(135, 48);
+            this.contextMenuStrip_remote.Size = new System.Drawing.Size(124, 48);
             // 
             // скачатьToolStripMenuItem
             // 
             this.скачатьToolStripMenuItem.Enabled = false;
             this.скачатьToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.скачатьToolStripMenuItem.Name = "скачатьToolStripMenuItem";
-            this.скачатьToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.скачатьToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.скачатьToolStripMenuItem.Text = "Скачать";
             this.скачатьToolStripMenuItem.Click += new System.EventHandler(this.скачатьToolStripMenuItem_Click);
             // 
             // удалитьToolStripMenuItem_rem
             // 
             this.удалитьToolStripMenuItem_rem.Name = "удалитьToolStripMenuItem_rem";
-            this.удалитьToolStripMenuItem_rem.Size = new System.Drawing.Size(134, 22);
+            this.удалитьToolStripMenuItem_rem.Size = new System.Drawing.Size(123, 22);
             this.удалитьToolStripMenuItem_rem.Text = "Удалить";
             this.удалитьToolStripMenuItem_rem.Click += new System.EventHandler(this.удалитьToolStripMenuItem1_Click);
             // 
@@ -302,35 +305,35 @@
             this.изменитьToolStripMenuItem1,
             this.удалитьToolStripMenuItem});
             this.contextMenuStrip_local.Name = "contextMenuStrip_local";
-            this.contextMenuStrip_local.Size = new System.Drawing.Size(149, 92);
+            this.contextMenuStrip_local.Size = new System.Drawing.Size(138, 92);
             // 
             // загрузитьToolStripMenuItem
             // 
             this.загрузитьToolStripMenuItem.Enabled = false;
             this.загрузитьToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.загрузитьToolStripMenuItem.Name = "загрузитьToolStripMenuItem";
-            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.загрузитьToolStripMenuItem.Text = "Отправить";
             this.загрузитьToolStripMenuItem.Click += new System.EventHandler(this.загрузитьToolStripMenuItem_Click);
             // 
             // открытьToolStripMenuItem
             // 
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.открытьToolStripMenuItem.Text = "Открыть";
             this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
             // 
             // изменитьToolStripMenuItem1
             // 
             this.изменитьToolStripMenuItem1.Name = "изменитьToolStripMenuItem1";
-            this.изменитьToolStripMenuItem1.Size = new System.Drawing.Size(148, 22);
+            this.изменитьToolStripMenuItem1.Size = new System.Drawing.Size(137, 22);
             this.изменитьToolStripMenuItem1.Text = "Изменить";
             this.изменитьToolStripMenuItem1.Click += new System.EventHandler(this.изменитьToolStripMenuItem1_Click);
             // 
             // удалитьToolStripMenuItem
             // 
             this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.удалитьToolStripMenuItem.Text = "Удалить";
             this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
             // 
@@ -377,6 +380,21 @@
             this.button_to_remote.Text = ">>";
             this.button_to_remote.UseVisualStyleBackColor = true;
             this.button_to_remote.Click += new System.EventHandler(this.button_to_remote_Click);
+            // 
+            // оПрограммеToolStripMenuItem
+            // 
+            this.оПрограммеToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сайтПрограммыToolStripMenuItem});
+            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
+            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
+            this.оПрограммеToolStripMenuItem.Text = "О программе";
+            // 
+            // сайтПрограммыToolStripMenuItem
+            // 
+            this.сайтПрограммыToolStripMenuItem.Name = "сайтПрограммыToolStripMenuItem";
+            this.сайтПрограммыToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.сайтПрограммыToolStripMenuItem.Text = "Сайт программы";
+            this.сайтПрограммыToolStripMenuItem.Click += new System.EventHandler(this.сайтПрограммыToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -440,6 +458,8 @@
         private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem_rem;
         private System.Windows.Forms.ToolStripMenuItem команднаяСтрокаСервераToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сайтПрограммыToolStripMenuItem;
     }
 }
 

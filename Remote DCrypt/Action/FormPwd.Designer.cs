@@ -31,9 +31,9 @@
             this.button_ok = new System.Windows.Forms.Button();
             this.button_cancel = new System.Windows.Forms.Button();
             this.groupBox = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.label = new System.Windows.Forms.Label();
             this.textBox = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,14 +62,25 @@
             // 
             // groupBox
             // 
-            this.groupBox.Controls.Add(this.button1);
             this.groupBox.Controls.Add(this.label);
             this.groupBox.Controls.Add(this.textBox);
+            this.groupBox.Controls.Add(this.button1);
             this.groupBox.Location = new System.Drawing.Point(12, 12);
             this.groupBox.Name = "groupBox";
             this.groupBox.Size = new System.Drawing.Size(323, 55);
             this.groupBox.TabIndex = 2;
             this.groupBox.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(305, 17);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(11, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label
             // 
@@ -86,19 +97,8 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox.Location = new System.Drawing.Point(57, 19);
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(215, 20);
+            this.textBox.Size = new System.Drawing.Size(260, 20);
             this.textBox.TabIndex = 0;
-            this.textBox.Text = "c6a893ec";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(278, 17);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(38, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FormPwd
             // 

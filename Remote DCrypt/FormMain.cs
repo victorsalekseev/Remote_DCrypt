@@ -11,6 +11,7 @@ using System.Security;
 using Remote_DCrypt.Action;
 using System.Text.RegularExpressions;
 using Tamir.SharpSsh;
+using System.Diagnostics;
 
 namespace Remote_DCrypt
 {
@@ -473,6 +474,11 @@ namespace Remote_DCrypt
                     frm_c.ShowDialog();
                 }
             }
+        }
+
+        private void сайтПрограммыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://crypt.netcode.ru");
         }
 
 

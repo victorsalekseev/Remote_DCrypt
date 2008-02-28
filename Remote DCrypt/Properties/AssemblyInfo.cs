@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Remote DCrypt")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("Netcode")]
 [assembly: AssemblyProduct("Remote DCrypt")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2007")]
 [assembly: AssemblyTrademark("")]

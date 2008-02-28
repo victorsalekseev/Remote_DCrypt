@@ -50,9 +50,9 @@ namespace Remote_DCrypt.Settings
                 o.key_fname = Crypt.default_key;//50;
                 o.pwd_file_enc = Crypt.default_key;
                 o.key_size = "256";
-                o.server = "localhost";
+                o.server = "yuor-server.1gb.ru";
                 o.base_dir = "http/";
-                o.user = "root";
+                o.user = "yuor-username";
                 //o.pwd = "password";
                 SaveSetting.CreateSettings(o);
             }

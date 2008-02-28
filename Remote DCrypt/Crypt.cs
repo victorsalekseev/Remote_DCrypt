@@ -48,11 +48,11 @@ namespace Remote_DCrypt
         private delegate void SetDecryptedFile(string dst_enc_file);
 
 
-        public static string default_key = "ZXCVBNMfghfghfggh67890$%^+_)(*&?><-GERTYUIOP123%^+_)"+
-                                            "(*&?>YUIfghsda67890$%^+_)(*&?><-GER&?><-GERTYUIOP123%^+_)"+
-                                            "(*af&?>YUIOP1RgfgjghkWsdfdfYUIOP12jjfghddfsfds67890$%^+_)"+
-                                            "(*dfhg565547dfvghg?>YUIOP12345678dfghytfER?><-GEfgh123456"+
-                                            "78dfghytfER&678dfghytf6dfghytf78";
+        public static string default_key = "ZXcvngjfgjfghfggh67890$%^+_)(*&?><-GERTYUIOP123%^+_)"+
+                                            "(*&?>YUIfghfgj67890$%^+_)(*&?><-GER&?><-GERTYUIOP123gfh_)"+
+                                            "(fgh&?>YUIOP1RcngcghkWsdfjtxcrhbdgry586jfheifm67890$%^fgh"+
+                                            "ghdfhg565547dfvghg?>YUIOP12345678dfghytfER?><-GEfgh123456"+
+                                            "78dfghytfEfgjb8dfgmytfgjfghytf78";
 
         public static bool CheckKeyFNameLen(string key)
         {
